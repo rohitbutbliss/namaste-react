@@ -1,0 +1,38 @@
+Question 1 : What is Emmet?
+
+Answer : Emmet is a plugin which is used to write html & css files easily using many shortcuts.
+
+
+Question 2 : Difference between a Library and Framework?
+
+Answer : A library can be used on a particular portion of a code without effecting other parts of code. But for a framework we need to write whole code in that framework to work them work.
+
+
+Question 3 : What is CDN? Why do we use it?
+
+Answer : CDN, also known as Content Delivery Network, is a network of servers which are used to cache the content user wants to access near them from original source. It will help us to access that data faster next time when user tries to acces the the same data.
+
+
+Question 4 : Why is React known as React?
+
+Answer : React was built to create fast & efficient user interfaces. Since, React reacts to changes in data hence, it was named "React".
+
+
+Question 5 : What is cross-origin in the script tag?
+
+Answer : cross-origin attribute is used to request for resources like css, js, images & many other things from other domains.
+
+
+Question 6 : What is the difference between React and ReactDOM?
+
+Answer : React is used to create React elements but ReactDOM is used to render those elements in the browser's DOM.
+
+
+Question 7 : What is difference between react.development.js and react.production.js files via CDN?
+
+Answer : react.development.js loads react.js for development mode, which contains tools for development while react.production.js loads react.js for production, which does not contain tolls for development but is more focused toward minifying the code.
+
+
+Question 8 : What are async and defer?
+
+Answer : script tag with async attribute will fetch the script while html parsing is still going on parallely once script is fetched the html parsing will pause until script is completely executed. While script tag with defer attribute will fetch the scripts parallely while html parsing is till going on but they won't execute those scripts until html parsing has been completed once it is completed those scripts will be executed.
