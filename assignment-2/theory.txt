@@ -1,0 +1,58 @@
+Question 1 : What is NPM?
+Answer : NPM is a Package Manager for Node which is used manage dependencies in the project.
+
+Question 2 : What is 'Parcel/Webpack'? Why do we need it?
+Answer : Parcel/Webpack are bundlers which are used to make our code production ready. They are used to minify your code, remove unnecessary code and comments & optimise your code for different browsers and many other features which helps in smooth and efficient functioning of your app in production.
+
+Question 3 : What is .parcel-cache?
+Answer : .parcel-cache is a directory created when we execute parcel dependency in our project. Inside .parcel-cache, parcel stores information about our code when it builds it. So, that when it is rebuilt, parcel doesn't need to re-analyze everything again form scratch.
+
+Question 4 : What is npx?
+Answer : npx is used to execute a dependency in our node_modules.
+
+Question 5 : What is difference between dependencies vs devDependencies?
+Answer : dependencies are the dependencies which are required for the smooth functioning of your app. For example, if we are using React in our application we need React dependency on our production App as well for smooth functioning of our project. But devDependencies on the other hand, are only required & used for development purposes. For example, bundlers, we need bundlers during development time only to optimise our code at once & other development tools. But once, we have optimised our code using those bundlers, we don't need them for production purposes.
+
+Question 6 : What is Tree Shaking?
+Answer : Parcel removes unnecessary code & comments to minify our code. This process omission of unnecessary code for better optimisation is known as Tree Shaking.
+
+Question 7 : What is Hot Module Replacement?
+Answer : Hot Module Replacement is used for adding modifications to an application while application is still running.
+
+Question 8 : List down your favourite 5 superpowers of Parcel and describe any 3 of them in your own words?
+Answer : My favourite superpowers of Parcel are : -
+- HMR (Hot Module Replacement)
+- Tree Shaking
+- Image Optimisation
+- Different Bundling
+- Diagnosis
+
+Tree Shaking --> This feature of Parcel enables it to remove unused code for better code optimisation.
+
+Different Bundling --> This feature of Parcel enables us to provide support for our App for older browsers.
+
+Diagnosis : This features helps us to diagnose the issue with our code by directly pinpointing to the issue.
+
+Question 9 : What is .gitignore? What should we ad and not add into it?
+Ans : .gitignore is file used by git to make sure to not push unnecessary folder/files to our github repo.
+We should add .parcel-cache, dist & node_modules folder into the .gitignore file as these folder are recreated when we run npm & npx commands later.
+
+We should not add package.json and package-lock.json into the .gitignore file.
+
+
+
+Question 10 : What is the difference between package.json and package-lock.json?
+Answer : package.json contains all the dependencies and their versions required for app. We can use ^ or ~ to make download higher versions if found. But package-lock.json contains the exact information of the version which is downloaded, it also contains integrity key which helps us to maintain uniformity between dependencies' version downloaded by production build and dev build.
+
+Question 11 : Why should I not modify package-lock.json?
+Answer : package-lock.json contains important information regarding version of dependencies which are used while development build. If we make some mistake while modifying package-lock.json, there might be some mismatch between dependencies used during production and during development phase. This might cause issues later on so to prevent those issues, we should not modify package-lock.json. It will be automatically modifies when we run npm commands in development build according to the needs.
+
+
+Question 12 : What is node_modules? Is it a good idea to push that on git?
+Answer : node_modules is a directory where npm store all the dependencies required by the app. It is not a good idea to push this directory on git as we can easily recreate this directory later on using package.json and npm install command later on.
+
+Question 13 : What is the dist folder?
+Answer : dist folder is used by bundlers to store minified version of source code which is later used to run your application.
+
+Question 14 : What is browserlists?
+Answer : browserlists is a package used to make our code suitable for many browsers and their previous versions. This helps us to ensure that our code is working similarly for at least most of the users.
