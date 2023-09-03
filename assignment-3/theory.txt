@@ -1,0 +1,13 @@
+Question 1 : What is JSX?
+Answer : JSX is a JavaScript Syntax Extension. It has HTML like syntax & can be used to create React Elements easily without using React.createElement() explicitly.
+
+Question 2 : Superpowers of JSX?
+Answer : - It has HTML like syntax which can be later converted to React.createElement() using babel.
+         - It takes care of cross server scripting and injection attacks so that we don't need to worry about those things.
+         - We can write javascript expressions which will be performed using curly braces {} inside JSX.
+
+Question 3 : Role of type attribute in script tag? What options can I use there?
+Answer : The role of type attribute in script tag is to indicate what type of script which are trying to load. We can use following options : MIME, module and importmap.
+
+Question 4 : {TitleComponent()} vs {<TitleComponent/>} vs {<TitleComponent></TitleComponent>}?
+Answer : They all are doing same thing but with different syntax.
