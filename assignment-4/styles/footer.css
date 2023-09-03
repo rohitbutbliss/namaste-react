@@ -1,0 +1,26 @@
+.footer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer-links {
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer li {
+  list-style-type: none;
+  color: #ffffff99;
+}
+
+.footer h3 {
+  color: white;
+}
