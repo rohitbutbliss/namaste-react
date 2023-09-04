@@ -1774,17 +1774,19 @@ const RestaurantCardContainer = () => {
 
 const Body = () => {
   return (
-    <div className="body">
-      <div className="options-container">
-        <h2>10 Restaurant</h2>
-        <div className="options">
-          <Sort />
-          <Filter />
+    <main>
+      <div className="body">
+        <div className="options-container">
+          <h2>20 Restaurants</h2>
+          <div className="options">
+            <Sort />
+            <Filter />
+          </div>
         </div>
+        <RestaurantCardContainer />
       </div>
-      <RestaurantCardContainer />
-    </div>
+    </main>
   );
 };
 
-export { Body };
+export default Body;

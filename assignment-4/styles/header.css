@@ -1,3 +1,9 @@
+header {
+  background-color: white;
+  position: sticky;
+  top: 0;
+}
+
 .header {
   display: flex;
   padding: 20px;
@@ -14,10 +20,15 @@
   width: 100%;
 }
 
+.header-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .header-right {
   position: relative;
-  width: 60%;
-  min-width: 750px;
+  width: fit-content;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
@@ -34,14 +45,11 @@
   gap: 10px;
 }
 
-.nav-items {
-  width: 100%;
-}
-
 .nav-items > ul {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  gap: 50px;
 }
 
 .nav-item-text {
@@ -67,7 +75,60 @@
 input,
 input:focus {
   width: 100px;
-  font-size: 16px;
+  font-size: var(--default-font-size);
   border: none;
   outline: none;
+}
+
+@media screen and (max-width: 1100px) {
+  .nav-items > ul {
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .header {
+    padding: 15px;
+  }
+  .nav-items {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    background-color: white;
+  }
+
+  .nav-items > ul {
+    gap: inherit;
+    justify-content: space-around;
+  }
+
+  .nav-items > ul > li {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .header {
+    padding: 10px;
+  }
+  .logo {
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .search,
+  .location {
+    padding: 5px;
+  }
+
+  input,
+  input:focus {
+    width: 50px;
+  }
+
+  .header-right {
+    gap: 5px;
+  }
 }

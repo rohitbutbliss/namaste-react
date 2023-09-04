@@ -74,17 +74,19 @@ const NavItems = () => {
 
 const Header = () => {
   return (
-    <div className="header">
-      <div className="header-left">
-        <Logo />
+    <header>
+      <div className="header">
+        <div className="header-left">
+          <Logo />
+        </div>
+        <div className="header-right">
+          <NavItems />
+          <Location />
+          <Search />
+        </div>
       </div>
-      <div className="header-right">
-        <NavItems />
-        <Location />
-        <Search />
-      </div>
-    </div>
+    </header>
   );
 };
 
-export { Header };
+export default Header;
