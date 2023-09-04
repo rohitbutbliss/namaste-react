@@ -1713,4 +1713,4 @@ const restaurantList = [
   },
 ];
 
-export default restaurantList;
+export { restaurantList };

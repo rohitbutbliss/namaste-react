@@ -1,8 +1,15 @@
 import Sort from "./Sort";
 import Filter from "./Filter";
 import RestaurantCardContainer from "./RestaurantCardContainer";
+import { restaurantList as list } from "../../utils/mockData";
+import { useState } from "react";
+
+const initialRestaurantList = [...list];
+let isFiltered = false;
 
 const Body = () => {
+  const [restaurantList, setRestaurantList] = useState(list);
+
   return (
     <main>
       <div className="body">
@@ -10,10 +17,24 @@ const Body = () => {
           <h2>20 Restaurants</h2>
           <div className="options">
             <Sort />
-            <Filter />
+            <span
+              onClick={() => {
+                if (!isFiltered) {
+                  const filteredList = restaurantList.filter(
+                    (restaurant) => restaurant.info.avgRating > 4
+                  );
+                  setRestaurantList(filteredList);
+                } else {
+                  setRestaurantList(initialRestaurantList);
+                }
+                isFiltered = !isFiltered;
+              }}
+            >
+              <Filter />
+            </span>
           </div>
         </div>
-        <RestaurantCardContainer />
+        <RestaurantCardContainer restaurantList={restaurantList} />
       </div>
     </main>
   );

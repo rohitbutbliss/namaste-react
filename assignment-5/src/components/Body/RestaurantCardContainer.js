@@ -1,7 +1,8 @@
 import RestaurantCard from "./RestaurantCard";
-import restaurantList from "../../utils/mockData";
 
-const RestaurantCardContainer = () => {
+const RestaurantCardContainer = (props) => {
+  const { restaurantList } = props;
+
   return (
     <div className="restaurant-container">
       {restaurantList.map((restaurant) => (
