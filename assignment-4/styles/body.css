@@ -97,7 +97,7 @@ main {
 
 @media screen and (max-width: 600px) {
   .body {
-    font-size: 12px;
+    font-size: var(--default-font-size);
     padding: 20px 10px;
   }
 
