@@ -1,0 +1,58 @@
+@font-face {
+  font-family: basis-grotesque-pro;
+  src: url("../Fonts/BasisGrotesqueArabicPro-Regular.ttf");
+}
+
+:root {
+  --h2-font-size: 24px;
+  --default-font-size: 16px;
+  --h3-font-size: 18px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: basis-grotesque-pro;
+  font-size: var(--default-font-size);
+}
+
+h2 {
+  font-size: var(--h2-font-size);
+}
+
+h3 {
+  font-size: var(--h3-font-size);
+}
+
+.app {
+  width: 100%;
+}
+
+.app > * {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.app > * > * {
+  width: 100%;
+  max-width: 1300px;
+}
+
+@media screen and (max-width: 770px) {
+  :root {
+    --h2-font-size: 20px;
+    --h3-font-size: 16px;
+    --default-font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  :root {
+    --h2-font-size: 16px;
+    --h3-font-size: 14px;
+    --default-font-size: 12px;
+  }
+}
