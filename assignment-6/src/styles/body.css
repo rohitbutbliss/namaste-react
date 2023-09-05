@@ -94,6 +94,9 @@ main {
   .restaurant-container {
     grid-template-columns: repeat(2, calc(100% / 2));
   }
+  .options {
+    gap: 10px;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -122,5 +125,29 @@ main {
   }
   .restaurant-container {
     grid-template-columns: 100%;
+  }
+
+  .body .search input {
+    width: 60px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .body .search input {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .options > *:nth-child(1) {
+    grid-column: 1/3;
+  }
+
+  .sort,
+  .filter {
+    font-size: 10px;
   }
 }

@@ -13,7 +13,6 @@ const Header = () => {
         <div className="header-right">
           <NavItems />
           <Location />
-          <Search />
         </div>
       </div>
     </header>

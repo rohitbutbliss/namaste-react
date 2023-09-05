@@ -33,7 +33,7 @@ header {
   flex-direction: row-reverse;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 50px;
 }
 
 .nav-item {
@@ -74,6 +74,7 @@ header {
 
 input,
 input:focus {
+  background-color: inherit;
   width: 100px;
   font-size: var(--default-font-size);
   border: none;
