@@ -1,10 +1,12 @@
 import { useState } from "react";
 
 const Filter = (props) => {
-  const [filterText] = props.stateVariables;
+  const [isFiltered] = props.stateVariables;
   return (
     <div className="filter">
-      <div className="filter-value">{filterText}</div>
+      <div className="filter-value">
+        {!isFiltered ? "All" : "Highest Rated"}
+      </div>
       <img
         src={require("../../../node_modules/iconoir/icons/filter-list.svg")}
         alt="filter-options"
