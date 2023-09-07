@@ -1,15 +1,15 @@
-import Sort from "./Sort";
-import Filter from "./Filter";
 import RestaurantCardContainer from "./RestaurantCardContainer";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { CARD_API } from "../utils/constants";
-import Search from "./Search";
 import ShimmerUI from "./ShimmerUI";
+import BodyTop from "./BodyTop";
+import NoResult from "./NoResult";
 
 const Body = () => {
   // declaring all the state variables required
   const [initialRestaurantList, setInitialRestaurantList] = useState([]);
   const [currentSearchInputText, setCurrentSearchInputText] = useState("");
+  const [searchText, setSearchText] = useState("");
   const [isFiltered, setIsFiltered] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -56,6 +56,7 @@ const Body = () => {
 
   // This method will set our list again to initial list based on filter once we will clear our search query
   const handleChangeInInput = (currentText) => {
+    setSearchText(currentText);
     if (currentText.length === 0) {
       setCurrentSearchInputText(currentText);
     }
@@ -65,6 +66,11 @@ const Body = () => {
   const handleSearchEnter = (searchText) => {
     if (!(currentSearchInputText === searchText))
       setCurrentSearchInputText(searchText);
+  };
+
+  const handleFilterClick = () => {
+    const updatedIsFiltered = !isFiltered;
+    setIsFiltered(updatedIsFiltered);
   };
 
   // Fetching required data to show on our webpage
@@ -84,6 +90,7 @@ const Body = () => {
     updateRestaurantsContainer();
   }, [currentSearchInputText, isFiltered]);
 
+  console.log("rendered");
   if (!isLoaded) {
     return (
       <main>
@@ -96,30 +103,15 @@ const Body = () => {
     return (
       <main>
         <div className="body">
-          <div className="options-container">
-            <h2>{restaurantCount} Restaurants</h2>
-            <div className="options">
-              <span>
-                <Search
-                  handleSearchEnter={handleSearchEnter}
-                  handleChangeInInput={handleChangeInInput}
-                />
-              </span>
-              <Sort />
-              <span
-                onClick={() => {
-                  const updatedIsFiltered = !isFiltered;
-                  setIsFiltered(updatedIsFiltered);
-                }}
-              >
-                <Filter stateVariables={[isFiltered]} />
-              </span>
-            </div>
-          </div>
-          <div className="no-result">
-            <p>No Result Found</p>
-            <img src={require("../images/no-results.png")} alt="" />
-          </div>
+          <BodyTop
+            restaurantCount={restaurantCount}
+            handleInputEnter={handleSearchEnter}
+            handleInputChange={handleChangeInInput}
+            handleFilterClick={handleFilterClick}
+            isFiltered={isFiltered}
+            searchText={searchText}
+          />
+          <NoResult />
         </div>
       </main>
     );
@@ -128,26 +120,14 @@ const Body = () => {
   return (
     <main>
       <div className="body">
-        <div className="options-container">
-          <h2>{restaurantCount} Restaurants</h2>
-          <div className="options">
-            <span>
-              <Search
-                handleSearchEnter={handleSearchEnter}
-                handleChangeInInput={handleChangeInInput}
-              />
-            </span>
-            <Sort />
-            <span
-              onClick={() => {
-                const updatedIsFiltered = !isFiltered;
-                setIsFiltered(updatedIsFiltered);
-              }}
-            >
-              <Filter stateVariables={[isFiltered]} />
-            </span>
-          </div>
-        </div>
+        <BodyTop
+          restaurantCount={restaurantCount}
+          handleInputEnter={handleSearchEnter}
+          handleInputChange={handleChangeInInput}
+          handleFilterClick={handleFilterClick}
+          isFiltered={isFiltered}
+          searchText={searchText}
+        />
         <RestaurantCardContainer restaurantList={restaurantList} />
       </div>
     </main>
