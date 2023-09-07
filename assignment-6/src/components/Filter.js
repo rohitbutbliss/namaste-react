@@ -8,7 +8,7 @@ const Filter = (props) => {
         {!isFiltered ? "All" : "Highest Rated"}
       </div>
       <img
-        src={require("../../../node_modules/iconoir/icons/filter-list.svg")}
+        src={require("../../node_modules/iconoir/icons/filter-list.svg")}
         alt="filter-options"
       />
     </div>

@@ -2,8 +2,8 @@ import Sort from "./Sort";
 import Filter from "./Filter";
 import RestaurantCardContainer from "./RestaurantCardContainer";
 import { useEffect, useRef, useState } from "react";
-import { CARD_API } from "../../utils/constants";
-import Search from "../Header/Search";
+import { CARD_API } from "../utils/constants";
+import Search from "./Search";
 import ShimmerUI from "./ShimmerUI";
 
 const Body = () => {
@@ -12,7 +12,6 @@ const Body = () => {
   const [currentSearchInputText, setCurrentSearchInputText] = useState("");
   const [isFiltered, setIsFiltered] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const counter = useRef(0);
 
   const [restaurantList, setRestaurantList] = useState([]);
   const [restaurantCount, setRestaurantCount] = useState(0);
@@ -38,7 +37,6 @@ const Body = () => {
 
   // This method will update the list based on search query and filter applied
   const updateRestaurantsContainer = () => {
-    console.log("inside update restaurnt container");
     let currentList;
     if (isFiltered)
       currentList = initialRestaurantList.filter(
@@ -53,6 +51,7 @@ const Body = () => {
           .includes(currentSearchInputText.toLowerCase())
       );
     setRestaurantList(currentList);
+    setRestaurantCount(currentList.length);
   };
 
   // This method will set our list again to initial list based on filter once we will clear our search query
@@ -72,9 +71,9 @@ const Body = () => {
   useEffect(() => {
     const loadData = async () => {
       const newList = await fetchData(); // fetching data
-      console.log("here");
       setRestaurantList(newList);
       setInitialRestaurantList(newList);
+      setRestaurantCount(newList.length);
       if (!isLoaded) setIsLoaded(!isLoaded); // updating isLoaded state after fetching data to mark it as true
     };
     loadData();
@@ -82,19 +81,9 @@ const Body = () => {
 
   // This will update RestaurantContainer once there is change in search text or filter
   useEffect(() => {
-    console.log("changing current container due to search and filter");
     updateRestaurantsContainer();
   }, [currentSearchInputText, isFiltered]);
 
-  // This method will change the restaurant count
-  useEffect(() => {
-    console.log("changing current counter");
-    const currentListLength = restaurantList.length;
-    setRestaurantCount(currentListLength);
-  }, [restaurantList]);
-
-  counter.current++;
-  console.log(counter.current);
   if (!isLoaded) {
     return (
       <main>
@@ -129,7 +118,7 @@ const Body = () => {
           </div>
           <div className="no-result">
             <p>No Result Found</p>
-            <img src={require("../../images/no-results.png")} alt="" />
+            <img src={require("../images/no-results.png")} alt="" />
           </div>
         </div>
       </main>

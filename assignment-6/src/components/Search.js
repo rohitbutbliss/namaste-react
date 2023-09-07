@@ -4,7 +4,7 @@ const Search = (props) => {
   return (
     <div className="search">
       <img
-        src={require("../../../node_modules/iconoir/icons/search.svg")}
+        src={require("../../node_modules/iconoir/icons/search.svg")}
         alt="search"
       />
       <input

@@ -1,7 +1,6 @@
 import Logo from "./Logo";
 import NavItems from "./NavItems";
 import Location from "./Location";
-import Search from "./Search";
 
 const Header = () => {
   return (

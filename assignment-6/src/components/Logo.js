@@ -1,7 +1,7 @@
 const Logo = () => {
   return (
     <div className="logo">
-      <img src={require("../../images/logo.png")} alt="food-hobbit" />
+      <img src={require("../images/logo.png")} alt="food-hobbit" />
     </div>
   );
 };
