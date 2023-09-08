@@ -4,7 +4,7 @@
   "description": "assignment 6 of namaste react",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html",
+    "build": "GENERATE_SOURCEMAP=false parcel build index.html",
     "test": "jest"
   },
   "author": "Rohit Kumar",
@@ -12,12 +12,12 @@
   "dependencies": {
     "iconoir": "^6.11.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "serve": "^14.2.1"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "htmlnano": "2.0.3",
     "parcel": "^2.9.3",
-    "process": "^0.11.10"
+    "process": "^0.11.10",
+    "serve": "^14.2.1"
   }
 }
