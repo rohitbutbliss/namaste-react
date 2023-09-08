@@ -1,4 +1,4 @@
-# Assignment 5
+# Assignment 6
 
 ## Question : What is the difference between Named Export, Default Export and \* as export?
 

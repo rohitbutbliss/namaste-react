@@ -135,9 +135,6 @@ main {
   .filter {
     padding: 5px;
   }
-  .restaurant-container {
-    grid-template-columns: 100%;
-  }
 
   .body .search input {
     width: 60px;
@@ -145,6 +142,9 @@ main {
 }
 
 @media screen and (max-width: 500px) {
+  .restaurant-container {
+    grid-template-columns: 100%;
+  }
   .options {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

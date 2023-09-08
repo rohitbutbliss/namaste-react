@@ -20,7 +20,10 @@ const Body = () => {
   const fetchData = async () => {
     let getRestaurantsList;
     try {
-      let res = await fetch(CARD_API);
+      let res = await fetch(
+        "https://cors-anywhere-gk19.onrender.com/" + CARD_API
+      );
+      console.log(res);
       res = await res.json();
 
       getRestaurantsList = res?.data?.cards.reduce((requiredCard, card) => {
@@ -29,6 +32,7 @@ const Body = () => {
           : requiredCard;
       }, undefined);
     } catch (error) {
+      console.log(error);
       getRestaurantsList = [];
     }
 
@@ -90,45 +94,28 @@ const Body = () => {
     updateRestaurantsContainer();
   }, [currentSearchInputText, isFiltered]);
 
-  console.log("rendered");
-  if (!isLoaded) {
-    return (
-      <main>
-        <div className="body">
-          <ShimmerUI />
-        </div>
-      </main>
-    );
-  } else if (restaurantList.length === 0) {
-    return (
-      <main>
-        <div className="body">
-          <BodyTop
-            restaurantCount={restaurantCount}
-            handleInputEnter={handleSearchEnter}
-            handleInputChange={handleChangeInInput}
-            handleFilterClick={handleFilterClick}
-            isFiltered={isFiltered}
-            searchText={searchText}
-          />
-          <NoResult />
-        </div>
-      </main>
-    );
-  }
-
   return (
     <main>
       <div className="body">
-        <BodyTop
-          restaurantCount={restaurantCount}
-          handleInputEnter={handleSearchEnter}
-          handleInputChange={handleChangeInInput}
-          handleFilterClick={handleFilterClick}
-          isFiltered={isFiltered}
-          searchText={searchText}
-        />
-        <RestaurantCardContainer restaurantList={restaurantList} />
+        {!isLoaded ? (
+          <ShimmerUI />
+        ) : (
+          <>
+            <BodyTop
+              restaurantCount={restaurantCount}
+              handleInputEnter={handleSearchEnter}
+              handleInputChange={handleChangeInInput}
+              handleFilterClick={handleFilterClick}
+              isFiltered={isFiltered}
+              searchText={searchText}
+            />
+            {restaurantList.length === 0 ? (
+              <NoResult />
+            ) : (
+              <RestaurantCardContainer restaurantList={restaurantList} />
+            )}
+          </>
+        )}
       </div>
     </main>
   );

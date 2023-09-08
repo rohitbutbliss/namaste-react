@@ -11,7 +11,7 @@
   height: 300px;
   padding: 20px;
   display: grid;
-  grid-template-rows: 180px 1fr;
+  grid-template-rows: 60% 1fr;
   gap: 20px;
 }
 
@@ -44,5 +44,11 @@
 @media screen and (max-width: 770px) {
   .shimmer {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .shimmer {
+    grid-template-columns: 100%;
   }
 }
