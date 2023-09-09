@@ -23,7 +23,6 @@ const Body = () => {
       let res = await fetch(
         "https://cors-anywhere-gk19.onrender.com/" + CARD_API
       );
-      console.log(res);
       res = await res.json();
 
       getRestaurantsList = res?.data?.cards.reduce((requiredCard, card) => {
@@ -32,7 +31,6 @@ const Body = () => {
           : requiredCard;
       }, undefined);
     } catch (error) {
-      console.log(error);
       getRestaurantsList = [];
     }
 
