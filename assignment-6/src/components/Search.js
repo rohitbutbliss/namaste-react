@@ -1,19 +1,30 @@
+import { useState } from "react";
+
 const Search = (props) => {
-  const { handleSearchEnter, handleChangeInInput, searchText } = props;
+  const [searchText, setSearchText] = useState("");
+
+  const { handleSearchEnter } = props;
+  console.log("search rendered");
 
   return (
     <div className="search">
       <img
+        onClick={() => {
+          handleSearchEnter(searchText);
+        }}
+        style={{ cursor: "pointer" }}
         src={require("../../node_modules/iconoir/icons/search.svg")}
         alt="search"
       />
       <input
         onChange={(e) => {
-          handleChangeInInput(e.target.value.trim());
+          setSearchText(e.target.value.trim());
+          if (e.target.value.trim() === "")
+            handleSearchEnter(e.target.value.trim());
         }}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            handleSearchEnter(e.target.value.trim());
+            handleSearchEnter(searchText);
           }
         }}
         type="text"

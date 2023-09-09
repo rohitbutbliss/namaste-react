@@ -9,12 +9,12 @@ const Body = () => {
   // declaring all the state variables required
   const [initialRestaurantList, setInitialRestaurantList] = useState([]);
   const [currentSearchInputText, setCurrentSearchInputText] = useState("");
-  const [searchText, setSearchText] = useState("");
   const [isFiltered, setIsFiltered] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   const [restaurantList, setRestaurantList] = useState([]);
   const [restaurantCount, setRestaurantCount] = useState(0);
+
+  console.log("body rendered");
 
   // This method is fetching restaurant data from API and converting it to list
   const fetchData = async () => {
@@ -24,6 +24,8 @@ const Body = () => {
         "https://cors-anywhere-gk19.onrender.com/" + CARD_API
       );
       res = await res.json();
+
+      console.log(res);
 
       getRestaurantsList = res?.data?.cards.reduce((requiredCard, card) => {
         return card?.card?.card?.id === "restaurant_grid_listing"
@@ -56,14 +58,6 @@ const Body = () => {
     setRestaurantCount(currentList.length);
   };
 
-  // This method will set our list again to initial list based on filter once we will clear our search query
-  const handleChangeInInput = (currentText) => {
-    setSearchText(currentText);
-    if (currentText.length === 0) {
-      setCurrentSearchInputText(currentText);
-    }
-  };
-
   // This method will help to process our search query
   const handleSearchEnter = (searchText) => {
     if (!(currentSearchInputText === searchText))
@@ -82,7 +76,6 @@ const Body = () => {
       setRestaurantList(newList);
       setInitialRestaurantList(newList);
       setRestaurantCount(newList.length);
-      if (!isLoaded) setIsLoaded(!isLoaded); // updating isLoaded state after fetching data to mark it as true
     };
     loadData();
   }, []);
@@ -95,17 +88,15 @@ const Body = () => {
   return (
     <main>
       <div className="body">
-        {!isLoaded ? (
+        {initialRestaurantList.length === 0 ? (
           <ShimmerUI />
         ) : (
           <>
             <BodyTop
               restaurantCount={restaurantCount}
               handleInputEnter={handleSearchEnter}
-              handleInputChange={handleChangeInInput}
               handleFilterClick={handleFilterClick}
               isFiltered={isFiltered}
-              searchText={searchText}
             />
             {restaurantList.length === 0 ? (
               <NoResult />

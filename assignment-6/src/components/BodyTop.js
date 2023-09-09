@@ -3,24 +3,14 @@ import Search from "./Search";
 import Filter from "./Filter";
 
 const BodyTop = (props) => {
-  const {
-    restaurantCount,
-    handleInputEnter,
-    handleInputChange,
-    handleFilterClick,
-    isFiltered,
-    searchText,
-  } = props;
+  const { restaurantCount, handleInputEnter, handleFilterClick, isFiltered } =
+    props;
   return (
     <div className="options-container">
       <h2>{restaurantCount} Restaurants</h2>
       <div className="options">
         <span>
-          <Search
-            handleSearchEnter={handleInputEnter}
-            handleChangeInInput={handleInputChange}
-            searchText={searchText}
-          />
+          <Search handleSearchEnter={handleInputEnter} />
         </span>
         <Sort />
         <span onClick={handleFilterClick}>
