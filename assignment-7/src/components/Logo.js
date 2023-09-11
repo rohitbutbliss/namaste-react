@@ -1,7 +1,11 @@
+import { Link } from "react-router-dom";
+
 const Logo = () => {
   return (
     <div className="logo">
-      <img src={require("../images/logo.png")} alt="food-hobbit" />
+      <Link href="/">
+        <img src={require("../images/logo.png")} alt="food-hobbit" />
+      </Link>
     </div>
   );
 };

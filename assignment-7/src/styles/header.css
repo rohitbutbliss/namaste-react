@@ -15,7 +15,7 @@ header {
   width: 150px;
 }
 
-.logo > img {
+.logo img {
   width: 100%;
 }
 
@@ -58,6 +58,7 @@ header {
 .location,
 .search {
   padding: 10px;
+  cursor: pointer;
 }
 
 .search {
@@ -114,7 +115,7 @@ input:focus {
     justify-content: space-around;
   }
 
-  .nav-items > ul > li {
+  .nav-items > ul li {
     flex-direction: column;
   }
 }

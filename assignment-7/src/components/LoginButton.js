@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-const LoginButton = (props) => {
+const LoginButton = () => {
   const [loginState, setLoginState] = useState(false);
-
   return (
     <div
       style={

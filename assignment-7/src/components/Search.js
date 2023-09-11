@@ -4,7 +4,6 @@ const Search = (props) => {
   const [searchText, setSearchText] = useState("");
 
   const { handleSearchEnter } = props;
-  console.log("search rendered");
 
   return (
     <div className="search">

@@ -4,6 +4,7 @@ import { CARD_API } from "../utils/constants";
 import ShimmerUI from "./ShimmerUI";
 import BodyTop from "./BodyTop";
 import NoResult from "./NoResult";
+import { MOCK_RESTAURANT_DATA } from "../utils/mockData";
 
 const Body = () => {
   // declaring all the state variables required
@@ -14,18 +15,15 @@ const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
   const [restaurantCount, setRestaurantCount] = useState(0);
 
-  console.log("body rendered");
-
   // This method is fetching restaurant data from API and converting it to list
   const fetchData = async () => {
     let getRestaurantsList;
     try {
-      // let res = await fetch(
-      //   "https://cors-anywhere-gk19.onrender.com/" + CARD_API
-      // );
-      let res = await fetch(CARD_API);
+      let res = await fetch(
+        "https://cors-anywhere-gk19.onrender.com/" + CARD_API
+      );
+      // let res = await fetch(CARD_API);
       res = await res.json();
-
       console.log(res);
 
       getRestaurantsList = res?.data?.cards.reduce((requiredCard, card) => {
@@ -34,10 +32,10 @@ const Body = () => {
           : requiredCard;
       }, undefined);
     } catch (error) {
-      getRestaurantsList = [];
+      getRestaurantsList = MOCK_RESTAURANT_DATA;
     }
 
-    return getRestaurantsList || [];
+    return getRestaurantsList || MOCK_RESTAURANT_DATA;
   };
 
   // This method will update the list based on search query and filter applied
@@ -87,27 +85,25 @@ const Body = () => {
   }, [currentSearchInputText, isFiltered]);
 
   return (
-    <main>
-      <div className="body">
-        {initialRestaurantList.length === 0 ? (
-          <ShimmerUI />
-        ) : (
-          <>
-            <BodyTop
-              restaurantCount={restaurantCount}
-              handleInputEnter={handleSearchEnter}
-              handleFilterClick={handleFilterClick}
-              isFiltered={isFiltered}
-            />
-            {restaurantList.length === 0 ? (
-              <NoResult />
-            ) : (
-              <RestaurantCardContainer restaurantList={restaurantList} />
-            )}
-          </>
-        )}
-      </div>
-    </main>
+    <>
+      {initialRestaurantList.length === 0 ? (
+        <ShimmerUI />
+      ) : (
+        <>
+          <BodyTop
+            restaurantCount={restaurantCount}
+            handleInputEnter={handleSearchEnter}
+            handleFilterClick={handleFilterClick}
+            isFiltered={isFiltered}
+          />
+          {restaurantList.length === 0 ? (
+            <NoResult />
+          ) : (
+            <RestaurantCardContainer restaurantList={restaurantList} />
+          )}
+        </>
+      )}
+    </>
   );
 };
 

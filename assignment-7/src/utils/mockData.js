@@ -1,4 +1,4 @@
-const restaurantList = [
+const MOCK_RESTAURANT_DATA = [
   {
     info: {
       id: "326440",
@@ -1713,4 +1713,4 @@ const restaurantList = [
   },
 ];
 
-export { restaurantList };
+export { MOCK_RESTAURANT_DATA };

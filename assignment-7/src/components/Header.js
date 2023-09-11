@@ -3,7 +3,8 @@ import NavItems from "./NavItems";
 import Location from "./Location";
 import LoginButton from "./LoginButton";
 
-const Header = () => {
+const Header = (props) => {
+  const { updateIsModalActive } = props;
   return (
     <header>
       <div className="header">
@@ -14,7 +15,7 @@ const Header = () => {
           <LoginButton />
 
           <NavItems />
-          <Location />
+          <Location updaterFunction={updateIsModalActive} />
         </div>
       </div>
     </header>
