@@ -8,29 +8,34 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import LocationModal from "./components/LocationModal";
+import DefaultHomePage from "./components/DefaultHomePage";
+import { getCity } from "./utils/FetchFunctions";
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 
 const AppLayout = () => {
+  getCity("mum");
   const [isModalActive, setIsModalActive] = useState(false);
   const updateIsModalActive = () => {
     setIsModalActive(!isModalActive);
   };
-  return (
-    <div className={isModalActive ? "app modal-active" : "app"}>
-      <LocationModal
-        isModalActive={isModalActive}
-        updaterFunction={updateIsModalActive}
-      />
-      <Header updateIsModalActive={updateIsModalActive} />
-      <main>
-        <div className="body">
-          <Outlet />
-        </div>
-      </main>
-      <Footer />
-    </div>
-  );
+
+  return <DefaultHomePage />;
+  // return (
+  //   <div className={isModalActive ? "app modal-active" : "app"}>
+  // <LocationModal
+  //   isModalActive={isModalActive}
+  //   updaterFunction={updateIsModalActive}
+  // />
+  //     <Header updateIsModalActive={updateIsModalActive} />
+  //     <main>
+  //       <div className="body">
+  //         <Outlet />
+  //       </div>
+  //     </main>
+  //     <Footer />
+  //   </div>
+  // );
 };
 
 const appRouter = createBrowserRouter([

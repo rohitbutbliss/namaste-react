@@ -10,10 +10,13 @@
   "author": "Rohit Kumar",
   "license": "ISC",
   "dependencies": {
+    "country-state-city": "^3.2.0",
     "iconoir": "^6.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.15.0"
+    "react-responsive-carousel": "^3.2.23",
+    "react-router-dom": "^6.15.0",
+    "react-text-transition": "^3.1.0"
   },
   "devDependencies": {
     "htmlnano": "2.0.3",
