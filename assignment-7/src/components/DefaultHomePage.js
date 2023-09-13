@@ -4,7 +4,13 @@ import Footer from "./Footer";
 import LocationModal from "./LocationModal";
 import { getCity } from "../utils/FetchFunctions";
 
-const DefaultHomePage = () => {
+const DefaultHomePage = (props) => {
+  const {
+    updateIsModalActive,
+    isModalActive,
+    turnOffModal,
+    updateLocationUpdateStatus,
+  } = props;
   const TEXTS = [
     "Hungry?",
     "Unexpected Guests?",
@@ -15,20 +21,14 @@ const DefaultHomePage = () => {
   ];
 
   const [index, setIndex] = useState(0);
-  const [isModalActive, setIsModalActive] = useState(false);
   const [searchResult, setSearchResult] = useState([]);
   let searchDebounce = useRef(null);
-  const updateIsModalActive = () => {
-    setIsModalActive(!isModalActive);
-  };
-
   useEffect(() => {
     setInterval(
       () => setIndex((index) => (index === TEXTS.length - 1 ? 0 : index + 1)),
       3000
     );
   }, []);
-  console.log(searchResult);
 
   return (
     <>
@@ -37,6 +37,7 @@ const DefaultHomePage = () => {
         <LocationModal
           isModalActive={isModalActive}
           updaterFunction={updateIsModalActive}
+          turnOffModal={turnOffModal}
         />
         <div className="default-body">
           <div className="default-main">
@@ -62,6 +63,7 @@ const DefaultHomePage = () => {
                       name="query"
                       id="default-search-input"
                       placeholder="Search your city"
+                      autoComplete="off"
                       onChange={(e) => {
                         const input = e.target.value.trim();
                         if (input === "") {
@@ -82,25 +84,33 @@ const DefaultHomePage = () => {
                           : "default-search-results"
                       }
                     >
-                      {searchResult.map(({ name, longitude, latitude }) => (
-                        <div
-                          className="default-search-result"
-                          key={name + longitude + latitude}
-                          onClick={() => {
-                            localStorage.setItem(
-                              "cityData",
-                              JSON.stringify({ name, longitude, latitude })
-                            );
-                          }}
-                        >
-                          {name}{" "}
-                          <span style={{ fontSize: "10px" }}>
-                            {Number(latitude).toFixed(3) +
-                              ", " +
-                              Number(longitude).toFixed(3)}
-                          </span>
-                        </div>
-                      ))}
+                      {searchResult.map((city) => {
+                        const { name, longitude, latitude } = city;
+                        return (
+                          <div
+                            className="default-search-result"
+                            key={name + longitude + latitude}
+                            onClick={() => {
+                              localStorage.setItem(
+                                "lat",
+                                JSON.stringify(latitude)
+                              );
+                              localStorage.setItem(
+                                "lon",
+                                JSON.stringify(longitude)
+                              );
+                              updateLocationUpdateStatus();
+                            }}
+                          >
+                            {name}{" "}
+                            <span style={{ fontSize: "10px" }}>
+                              {Number(latitude).toFixed(3) +
+                                ", " +
+                                Number(longitude).toFixed(3)}
+                            </span>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
 

@@ -5,6 +5,7 @@ import ShimmerUI from "./ShimmerUI";
 import BodyTop from "./BodyTop";
 import NoResult from "./NoResult";
 import { MOCK_RESTAURANT_DATA } from "../utils/mockData";
+import { fetchList } from "../utils/FetchFunctions";
 
 const Body = () => {
   // declaring all the state variables required
@@ -16,24 +17,10 @@ const Body = () => {
   const [restaurantCount, setRestaurantCount] = useState(0);
 
   // This method is fetching restaurant data from API and converting it to list
-  const fetchData = async () => {
-    let getRestaurantsList;
-    try {
-      let res = await fetch(
-        "https://cors-anywhere-gk19.onrender.com/" + CARD_API
-      );
-      res = await res.json();
-
-      getRestaurantsList = res?.data?.cards.reduce((requiredCard, card) => {
-        return card?.card?.card?.id === "restaurant_grid_listing"
-          ? card?.card?.card?.gridElements.infoWithStyle?.restaurants
-          : requiredCard;
-      }, undefined);
-    } catch (error) {
-      getRestaurantsList = MOCK_RESTAURANT_DATA;
-    }
-
-    return getRestaurantsList || MOCK_RESTAURANT_DATA;
+  const fetchData = () => {
+    const lat = Number(JSON.parse(localStorage.getItem("lat")));
+    const lon = Number(JSON.parse(localStorage.getItem("lon")));
+    return fetchList(lat, lon);
   };
 
   // This method will update the list based on search query and filter applied

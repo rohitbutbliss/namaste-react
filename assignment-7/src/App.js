@@ -9,33 +9,61 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import LocationModal from "./components/LocationModal";
 import DefaultHomePage from "./components/DefaultHomePage";
-import { getCity } from "./utils/FetchFunctions";
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 
 const AppLayout = () => {
-  getCity("mum");
+  const lat = JSON.parse(localStorage.getItem("lat"));
+  const lon = JSON.parse(localStorage.getItem("lon"));
+
   const [isModalActive, setIsModalActive] = useState(false);
+  const [locationUpdateStatus, setLocationUpdateStatus] = useState(
+    lat !== null && lon !== null
+  );
+
   const updateIsModalActive = () => {
-    setIsModalActive(!isModalActive);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setLocationUpdateStatus(true);
+        setIsModalActive(false);
+        localStorage.setItem("lat", JSON.stringify(pos.coords.latitude));
+        localStorage.setItem("lon", JSON.stringify(pos.coords.longitude));
+      },
+      () => setIsModalActive(true)
+    );
   };
 
-  return <DefaultHomePage />;
-  // return (
-  //   <div className={isModalActive ? "app modal-active" : "app"}>
-  // <LocationModal
-  //   isModalActive={isModalActive}
-  //   updaterFunction={updateIsModalActive}
-  // />
-  //     <Header updateIsModalActive={updateIsModalActive} />
-  //     <main>
-  //       <div className="body">
-  //         <Outlet />
-  //       </div>
-  //     </main>
-  //     <Footer />
-  //   </div>
-  // );
+  const turnOffModal = () => {
+    setIsModalActive(false);
+  };
+
+  const updateLocationUpdateStatus = () => {
+    setLocationUpdateStatus(!locationUpdateStatus);
+  };
+
+  return !locationUpdateStatus ? (
+    <DefaultHomePage
+      isModalActive={isModalActive}
+      updateIsModalActive={updateIsModalActive}
+      turnOffModal={turnOffModal}
+      updateLocationUpdateStatus={updateLocationUpdateStatus}
+    />
+  ) : (
+    <div className={isModalActive ? "app modal-active" : "app"}>
+      <LocationModal
+        isModalActive={isModalActive}
+        updaterFunction={updateIsModalActive}
+        turnOffModal={turnOffModal}
+      />
+      <Header updateIsModalActive={updateIsModalActive} />
+      <main>
+        <div className="body">
+          <Outlet />
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
 };
 
 const appRouter = createBrowserRouter([
