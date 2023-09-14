@@ -91,6 +91,7 @@ const DefaultHomePage = (props) => {
                             className="default-search-result"
                             key={name + longitude + latitude}
                             onClick={() => {
+                              updateLocationUpdateStatus();
                               localStorage.setItem(
                                 "lat",
                                 JSON.stringify(latitude)
@@ -99,7 +100,6 @@ const DefaultHomePage = (props) => {
                                 "lon",
                                 JSON.stringify(longitude)
                               );
-                              updateLocationUpdateStatus();
                             }}
                           >
                             {name}{" "}

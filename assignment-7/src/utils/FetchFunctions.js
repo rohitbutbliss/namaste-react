@@ -1,13 +1,6 @@
 import { City } from "country-state-city";
 import { MOCK_RESTAURANT_DATA } from "./mockData";
 
-const fetchIP = async () => {
-  let ip = await fetch("https://api64.ipify.org?format=json");
-  ip = await ip.json();
-  console.log(ip);
-  return ip;
-};
-
 const fetchList = async (lat, lon) => {
   let getRestaurantsList;
   try {
@@ -23,10 +16,10 @@ const fetchList = async (lat, lon) => {
         : requiredCard;
     }, undefined);
   } catch (error) {
-    getRestaurantsList = MOCK_RESTAURANT_DATA;
+    getRestaurantsList = [];
   }
 
-  return getRestaurantsList || MOCK_RESTAURANT_DATA;
+  return getRestaurantsList || [];
 };
 //api.ipgeolocation.io/ipgeo?apiKey=f7108121067647768e771fa850aa14a7
 

@@ -32,7 +32,7 @@ header {
   flex-direction: row-reverse;
   align-items: center;
   justify-content: center;
-  gap: 50px;
+  gap: 20px;
 }
 
 .nav-item {
@@ -47,8 +47,7 @@ header {
 .nav-items > ul {
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  gap: 50px;
+  gap: 20px;
 }
 
 .nav-item-text {

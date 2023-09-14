@@ -1,15 +1,14 @@
 import RestaurantCardContainer from "./RestaurantCardContainer";
 import { useEffect, useState } from "react";
-import { CARD_API } from "../utils/constants";
 import ShimmerUI from "./ShimmerUI";
 import BodyTop from "./BodyTop";
 import NoResult from "./NoResult";
-import { MOCK_RESTAURANT_DATA } from "../utils/mockData";
 import { fetchList } from "../utils/FetchFunctions";
 
 const Body = () => {
   // declaring all the state variables required
   const [initialRestaurantList, setInitialRestaurantList] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [currentSearchInputText, setCurrentSearchInputText] = useState("");
   const [isFiltered, setIsFiltered] = useState(false);
 
@@ -60,6 +59,7 @@ const Body = () => {
       setRestaurantList(newList);
       setInitialRestaurantList(newList);
       setRestaurantCount(newList.length);
+      setIsLoaded(true);
     };
     loadData();
   }, []);
@@ -71,7 +71,7 @@ const Body = () => {
 
   return (
     <>
-      {initialRestaurantList.length === 0 ? (
+      {!isLoaded ? (
         <ShimmerUI />
       ) : (
         <>
