@@ -13,7 +13,7 @@ const Header = (props) => {
         </div>
         <div className="header-right">
           <NavItems />
-          <div style={{ display: "flex", gap: "20px" }}>
+          <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
             <img
               style={{ width: "24px", height: "24px", cursor: "pointer" }}
               src={require("../../node_modules/iconoir/icons/search.svg")}
