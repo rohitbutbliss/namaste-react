@@ -15,7 +15,7 @@ const Header = (props) => {
           <NavItems />
           <div style={{ display: "flex", gap: "20px" }}>
             <img
-              style={{ width: "24px", cursor: "pointer" }}
+              style={{ width: "24px", height: "24px", cursor: "pointer" }}
               src={require("../../node_modules/iconoir/icons/search.svg")}
               alt="search"
               onClick={updateSearchModalStatus}
