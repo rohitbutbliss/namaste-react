@@ -10,6 +10,7 @@ import Error from "./components/Error";
 import LocationModal from "./components/LocationModal";
 import DefaultHomePage from "./components/DefaultHomePage";
 import SearchModal from "./components/SearchModal";
+import RestaurantMenu from "./components/RestaurantMenu";
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 
@@ -89,7 +90,7 @@ const AppLayout = () => {
       />
       <main>
         <div className="body">
-          <Outlet />
+          <Outlet context={[currentLatitude, currentLongitude]} />
         </div>
       </main>
       <Footer />
@@ -113,6 +114,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/restaurants/menu",
+        element: <RestaurantMenu />,
       },
     ],
     errorElement: <Error />,
