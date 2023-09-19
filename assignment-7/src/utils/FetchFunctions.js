@@ -44,14 +44,30 @@ const fetchRestaurantMenu = async (lat, lon, id) => {
 
     res = await res.json();
 
+    const filterObj = {};
     getAllResult.restaurantInfo = res?.data?.cards[0]?.card?.card?.info;
     getAllResult.restaurantMenu = res?.data?.cards
       ?.reduce((initial, card) => {
         if (card.groupedCard !== undefined) return card;
       }, undefined)
-      ?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards?.map(
-        (dish) => dish?.card?.info
+      ?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
+        (cards) =>
+          cards?.card?.card["@type"] ===
+          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
       );
+
+    getAllResult.restaurantMenu = getAllResult.restaurantMenu
+      ?.reduce((initial, cards) => {
+        initial.push(...cards?.card?.card?.itemCards);
+        return initial;
+      }, [])
+      .map((items) => items.card.info)
+      .filter((item) => {
+        if (filterObj[item.id] === undefined) {
+          filterObj[item.id] = true;
+          return true;
+        }
+      });
   } catch (error) {
     getAllResult.restaurantInfo = null;
     getAllResult.restaurantMenu = null;

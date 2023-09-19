@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import { fetchRestaurantMenu } from "../utils/FetchFunctions";
 import ShimmerUI from "./ShimmerUI";
 import MenuCard from "./MenuCard";
@@ -10,12 +10,14 @@ const RestaurantMenu = () => {
   const [restaurantInfo, setRestaurantInfo] = useState(null);
   const [restaurantMenu, setRestaurantMenu] = useState([]);
 
+  const { resId } = useParams();
+
   const fetchMenu = async () => {
     // 326440;
     const result = await fetchRestaurantMenu(
       currentLatitude,
       currentLongitude,
-      326440
+      resId
     );
     return result;
   };

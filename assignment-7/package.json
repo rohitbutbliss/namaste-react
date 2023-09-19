@@ -4,7 +4,7 @@
   "description": "assignment 7 of namaste react",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html --no-source-maps",
+    "build": "parcel build index.html",
     "test": "jest"
   },
   "author": "Rohit Kumar",
