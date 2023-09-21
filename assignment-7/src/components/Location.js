@@ -4,12 +4,8 @@ const Location = (props) => {
   return (
     <div
       className="location"
-      onClick={async () => {
-        await updateIsModalActive();
-        updateLatitudeLongitude(
-          JSON.parse(localStorage.getItem("lat")),
-          JSON.parse(localStorage.getItem("lon"))
-        );
+      onClick={() => {
+        updateIsModalActive();
       }}
     >
       <img

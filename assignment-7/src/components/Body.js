@@ -57,6 +57,7 @@ const Body = () => {
 
   // Fetching required data to show on our webpage
   useEffect(() => {
+    setIsLoaded(false);
     const loadData = async () => {
       const newList = await fetchData(); // fetching data
       setRestaurantList(newList);

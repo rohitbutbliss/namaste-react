@@ -42,6 +42,10 @@ const AppLayout = () => {
         setIsModalActive(false);
         localStorage.setItem("lat", JSON.stringify(pos.coords.latitude));
         localStorage.setItem("lon", JSON.stringify(pos.coords.longitude));
+        updateLatitudeLongitude(
+          JSON.parse(localStorage.getItem("lat")),
+          JSON.parse(localStorage.getItem("lon"))
+        );
       },
       () => {
         setIsModalActive(true);
@@ -86,7 +90,6 @@ const AppLayout = () => {
       />
       <Header
         updateIsModalActive={updateIsModalActive}
-        updateLatitudeLongitude={updateLatitudeLongitude}
         updateSearchModalStatus={updateSearchModalStatus}
       />
       <main>

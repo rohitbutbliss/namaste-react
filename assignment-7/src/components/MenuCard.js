@@ -12,9 +12,10 @@ const MenuCard = (props) => {
       <div
         style={{
           height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
+          display: "grid",
+          gridTemplateRows: "auto auto 1fr",
+          gap: "10px",
+          alignItems: "space-between",
         }}
       >
         <img
@@ -39,7 +40,16 @@ const MenuCard = (props) => {
             {"₹" + (defaultPrice || price) / 100}
           </span>
         </div>
-        <p style={{ fontSize: "12px", color: "rgb(162,162,162)" }}>
+        <p
+          style={{
+            fontSize: "12px",
+            color: "rgb(162,162,162)",
+            height: "100%",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+          }}
+        >
           {description}
         </p>
       </div>
