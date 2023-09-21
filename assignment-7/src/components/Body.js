@@ -4,6 +4,7 @@ import ShimmerUI from "./ShimmerUI";
 import BodyTop from "./BodyTop";
 import NoResult from "./NoResult";
 import { fetchList } from "../utils/FetchFunctions";
+import { useOutletContext } from "react-router-dom";
 
 const Body = () => {
   // declaring all the state variables required
@@ -14,6 +15,8 @@ const Body = () => {
 
   const [restaurantList, setRestaurantList] = useState([]);
   const [restaurantCount, setRestaurantCount] = useState(0);
+
+  const [currentLatitude, currentLongitude] = useOutletContext();
 
   // This method is fetching restaurant data from API and converting it to list
   const fetchData = () => {
@@ -62,7 +65,7 @@ const Body = () => {
       setIsLoaded(true);
     };
     loadData();
-  }, []);
+  }, [currentLatitude, currentLongitude]);
 
   // This will update RestaurantContainer once there is change in search text or filter
   useEffect(() => {

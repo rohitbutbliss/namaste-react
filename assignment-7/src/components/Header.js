@@ -4,7 +4,11 @@ import Location from "./Location";
 import LoginButton from "./LoginButton";
 
 const Header = (props) => {
-  const { updateIsModalActive, updateSearchModalStatus } = props;
+  const {
+    updateIsModalActive,
+    updateSearchModalStatus,
+    updateLatitudeLongitude,
+  } = props;
   return (
     <header>
       <div className="header">
@@ -20,7 +24,10 @@ const Header = (props) => {
               alt="search"
               onClick={updateSearchModalStatus}
             />
-            <Location updaterFunction={updateIsModalActive} />
+            <Location
+              updateLatitudeLongitude={updateLatitudeLongitude}
+              updateIsModalActive={updateIsModalActive}
+            />
           </div>
         </div>
       </div>

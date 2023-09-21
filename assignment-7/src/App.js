@@ -86,6 +86,7 @@ const AppLayout = () => {
       />
       <Header
         updateIsModalActive={updateIsModalActive}
+        updateLatitudeLongitude={updateLatitudeLongitude}
         updateSearchModalStatus={updateSearchModalStatus}
       />
       <main>
