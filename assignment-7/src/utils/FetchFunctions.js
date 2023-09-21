@@ -5,7 +5,7 @@ const fetchList = async (lat, lon) => {
   let getRestaurantsList;
   try {
     let res = await fetch(
-      "https://cors-anywhere-v2.onrender.com/" +
+      "https://cors-anywhere-v3.onrender.com/" +
         `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lon}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
     );
     res = await res.json();
@@ -38,7 +38,7 @@ const fetchRestaurantMenu = async (lat, lon, id) => {
     //     `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lon}&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`
     // );
     let res = await fetch(
-      "https://cors-anywhere-v2.onrender.com/" +
+      "https://cors-anywhere-v3.onrender.com/" +
         `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lon}&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`
     );
 
