@@ -1,7 +1,7 @@
 {
-  "name": "assignment-8",
+  "name": "assignment-9",
   "version": "1.0.0",
-  "description": "assignment 8 of namaste react",
+  "description": "assignment 9 of namaste react",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html",

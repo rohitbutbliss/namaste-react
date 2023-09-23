@@ -4,7 +4,6 @@ const User = (props) => {
   const { userData } = props;
   const { login: name, avatar_url: imageUrl } = userData;
 
-  console.log("hey");
   return (
     <div
       style={{
