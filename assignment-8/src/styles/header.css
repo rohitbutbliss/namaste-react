@@ -1,0 +1,145 @@
+header {
+  background-color: white;
+  position: sticky;
+  top: 0;
+}
+
+.header {
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+  background-color: white;
+}
+
+.logo {
+  width: 150px;
+}
+
+.logo img {
+  width: 100%;
+}
+
+.header-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-right {
+  position: relative;
+  width: fit-content;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.nav-item {
+  list-style-type: none;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.nav-items > ul {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-item-text {
+  white-space: nowrap;
+}
+
+.location,
+.search {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.search {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.search > * {
+  padding: 5px;
+}
+
+input,
+input:focus {
+  background-color: inherit;
+  width: 100px;
+  font-size: var(--default-font-size);
+  border: none;
+  outline: none;
+}
+
+.login-btn {
+  width: 100px;
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1100px) {
+  .nav-items > ul {
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .header {
+    padding: 15px;
+  }
+  .nav-items {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+  }
+
+  .nav-items > ul {
+    gap: inherit;
+    justify-content: space-around;
+  }
+
+  .nav-items > ul li {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .header {
+    padding: 10px;
+  }
+  .logo {
+    width: 100px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .search,
+  .location {
+    padding: 5px;
+  }
+
+  input,
+  input:focus {
+    width: 50px;
+  }
+
+  .header-right {
+    gap: 5px;
+  }
+}
