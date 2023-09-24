@@ -11,6 +11,7 @@ import LocationModal from "./components/LocationModal";
 import DefaultHomePage from "./components/DefaultHomePage";
 import SearchModal from "./components/SearchModal";
 import RestaurantMenu from "./components/RestaurantMenu";
+import useIsModalActive from "./utils/useIsModalActive";
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 
@@ -18,7 +19,6 @@ const AppLayout = () => {
   const lat = JSON.parse(localStorage.getItem("lat"));
   const lon = JSON.parse(localStorage.getItem("lon"));
 
-  const [isModalActive, setIsModalActive] = useState(false);
   const [isSearchModalActive, setIsSearchModalActive] = useState(false);
   const [locationUpdateStatus, setLocationUpdateStatus] = useState(
     lat !== null && lon !== null
@@ -35,42 +35,16 @@ const AppLayout = () => {
     setCurrentLongitude(lon);
   };
 
-  const updateIsModalActive = () => {
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        setLocationUpdateStatus(true);
-        setIsModalActive(false);
-        localStorage.setItem("lat", JSON.stringify(pos.coords.latitude));
-        localStorage.setItem("lon", JSON.stringify(pos.coords.longitude));
-        updateLatitudeLongitude(
-          JSON.parse(localStorage.getItem("lat")),
-          JSON.parse(localStorage.getItem("lon"))
-        );
-      },
-      () => {
-        setIsModalActive(true);
-      }
-    );
-  };
-
-  const turnOffModal = () => {
-    setIsModalActive(false);
-  };
-
-  const updateSearchModalStatus = () => {
-    setIsSearchModalActive(!isSearchModalActive);
-  };
-
-  const updateLocationUpdateStatus = () => {
-    setLocationUpdateStatus(!locationUpdateStatus);
-  };
+  const { isModalActive, setIsModalActive, updateIsModalActive } =
+    useIsModalActive(setLocationUpdateStatus, updateLatitudeLongitude);
 
   return !locationUpdateStatus ? (
     <DefaultHomePage
       isModalActive={isModalActive}
       updateIsModalActive={updateIsModalActive}
-      turnOffModal={turnOffModal}
-      updateLocationUpdateStatus={updateLocationUpdateStatus}
+      setIsModalActive={setIsModalActive}
+      updateLocationUpdateStatus={setLocationUpdateStatus}
+      locationUpdateStatus={locationUpdateStatus}
     />
   ) : (
     <div
@@ -80,17 +54,16 @@ const AppLayout = () => {
     >
       <SearchModal
         updateLatitudeLongitude={updateLatitudeLongitude}
-        updateSearchModalStatus={updateSearchModalStatus}
+        updateSearchModalStatus={setIsSearchModalActive}
         isSearchModalActive={isSearchModalActive}
       />
       <LocationModal
         isModalActive={isModalActive}
-        updaterFunction={updateIsModalActive}
-        turnOffModal={turnOffModal}
+        setIsModalActive={setIsModalActive}
       />
       <Header
         updateIsModalActive={updateIsModalActive}
-        updateSearchModalStatus={updateSearchModalStatus}
+        updateSearchModalStatus={setIsSearchModalActive}
       />
       <main>
         <div className="body">

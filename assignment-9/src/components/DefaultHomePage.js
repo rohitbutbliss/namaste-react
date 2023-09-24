@@ -3,14 +3,18 @@ import TextTransition, { presets } from "react-text-transition";
 import Footer from "./Footer";
 import LocationModal from "./LocationModal";
 import { getCity } from "../utils/FetchFunctions";
+import useTextAnimation from "../utils/useTextAnimation";
+import { Link } from "react-router-dom";
 
 const DefaultHomePage = (props) => {
   const {
     updateIsModalActive,
     isModalActive,
-    turnOffModal,
+    setIsModalActive,
     updateLocationUpdateStatus,
+    locationUpdateStatus,
   } = props;
+
   const TEXTS = [
     "Hungry?",
     "Unexpected Guests?",
@@ -20,15 +24,9 @@ const DefaultHomePage = (props) => {
     "Late night at office?",
   ];
 
-  const [index, setIndex] = useState(0);
+  const index = useTextAnimation(TEXTS);
   const [searchResult, setSearchResult] = useState([]);
   let searchDebounce = useRef(null);
-  useEffect(() => {
-    setInterval(
-      () => setIndex((index) => (index === TEXTS.length - 1 ? 0 : index + 1)),
-      3000
-    );
-  }, []);
 
   return (
     <>
@@ -37,7 +35,7 @@ const DefaultHomePage = (props) => {
         <LocationModal
           isModalActive={isModalActive}
           updaterFunction={updateIsModalActive}
-          turnOffModal={turnOffModal}
+          setIsModalActive={setIsModalActive}
         />
         <div className="default-body">
           <div className="default-main">
@@ -46,7 +44,9 @@ const DefaultHomePage = (props) => {
                 <img src={require("../images/logo.png")} alt="" />
               </div>
               <div className="default-top-btn">
-                <button className="default-login-btn">Login</button>
+                <Link to={"/about"}>
+                  <button className="default-login-btn">Login</button>
+                </Link>
                 <button className="default-signup-btn">Signup</button>
               </div>
             </div>
@@ -91,7 +91,7 @@ const DefaultHomePage = (props) => {
                             className="default-search-result"
                             key={name + longitude + latitude}
                             onClick={() => {
-                              updateLocationUpdateStatus();
+                              updateLocationUpdateStatus(!locationUpdateStatus);
                               localStorage.setItem(
                                 "lat",
                                 JSON.stringify(latitude)

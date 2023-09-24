@@ -1,5 +1,5 @@
 import RestaurantCardContainer from "./RestaurantCardContainer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ShimmerUI from "./ShimmerUI";
 import BodyTop from "./BodyTop";
 import NoResult from "./NoResult";

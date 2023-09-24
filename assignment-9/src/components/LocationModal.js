@@ -1,5 +1,5 @@
 const LocationModal = (props) => {
-  const { isModalActive, updaterFunction, turnOffModal } = props;
+  const { isModalActive, setIsModalActive } = props;
   return (
     <div
       style={{}}
@@ -40,7 +40,7 @@ const LocationModal = (props) => {
             cursor: "pointer",
           }}
           onClick={() => {
-            turnOffModal();
+            setIsModalActive(false);
           }}
         >
           Got it

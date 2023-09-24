@@ -44,7 +44,7 @@ const SearchModal = (props) => {
             style={{ padding: "5px", cursor: "pointer" }}
             src={require("../../node_modules/iconoir/icons/arrow-left.svg")}
             alt="back"
-            onClick={updateSearchModalStatus}
+            onClick={() => updateSearchModalStatus(!isSearchModalActive)}
           />
           <input
             type="text"
