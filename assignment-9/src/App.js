@@ -45,6 +45,7 @@ const AppLayout = () => {
       setIsModalActive={setIsModalActive}
       updateLocationUpdateStatus={setLocationUpdateStatus}
       locationUpdateStatus={locationUpdateStatus}
+      updateLatitudeLongitude={updateLatitudeLongitude}
     />
   ) : (
     <div

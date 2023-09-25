@@ -13,6 +13,7 @@ const DefaultHomePage = (props) => {
     setIsModalActive,
     updateLocationUpdateStatus,
     locationUpdateStatus,
+    updateLatitudeLongitude,
   } = props;
 
   const TEXTS = [
@@ -24,7 +25,7 @@ const DefaultHomePage = (props) => {
     "Late night at office?",
   ];
 
-  const index = useTextAnimation(TEXTS);
+  const currentIndex = useTextAnimation(TEXTS);
   const [searchResult, setSearchResult] = useState([]);
   let searchDebounce = useRef(null);
 
@@ -53,7 +54,7 @@ const DefaultHomePage = (props) => {
             <div className="default-container">
               <div className="default-container-content">
                 <TextTransition springConfig={presets.gentle}>
-                  {TEXTS[index]}
+                  {TEXTS[currentIndex]}
                 </TextTransition>
                 <p>Order food from favourite restaurants near you.</p>
                 <div className="default-search">
@@ -100,6 +101,7 @@ const DefaultHomePage = (props) => {
                                 "lon",
                                 JSON.stringify(longitude)
                               );
+                              updateLatitudeLongitude(latitude, longitude);
                             }}
                           >
                             {name}{" "}

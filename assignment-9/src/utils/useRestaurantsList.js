@@ -3,14 +3,16 @@ import { useEffect, useState } from "react";
 const useRestaurantsList = (lat, lon) => {
   const [restaurantsList, setRestaurantsList] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  let currentRestaurantsList = [];
   const fetchList = async () => {
-    let currentRestaurantsList = [];
     try {
       let res = await fetch(
         "https://cors-anywhere-v3.onrender.com/" +
           `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lon}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
       );
       res = await res.json();
+
+      console.log(res);
 
       currentRestaurantsList = res?.data?.cards.reduce((requiredCard, card) => {
         return card?.card?.card?.id === "restaurant_grid_listing"
@@ -20,7 +22,7 @@ const useRestaurantsList = (lat, lon) => {
     } catch (error) {
       currentRestaurantsList = [];
     }
-    setRestaurantsList(currentRestaurantsList);
+    setRestaurantsList(currentRestaurantsList || []);
     setIsLoaded(true);
   };
 
