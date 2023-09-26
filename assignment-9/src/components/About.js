@@ -1,18 +1,16 @@
-import { useEffect, useState } from "react";
 import User from "./User";
+import useUserList from "../utils/useUserList";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import OfflinePage from "./OfflinePage";
 
 const About = () => {
-  const [userList, setUserList] = useState([]);
+  const userList = useUserList();
+  const onlineStatus = useOnlineStatus();
 
-  useEffect(() => {
-    (async () => {
-      const data = await fetch("https://api.github.com/users");
-      const json = await data.json();
-      setUserList(json);
-    })();
-  }, []);
-
-  return (
+  console.log(onlineStatus);
+  return !onlineStatus ? (
+    <OfflinePage />
+  ) : (
     <div
       style={{
         display: "flex",

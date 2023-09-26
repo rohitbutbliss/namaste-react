@@ -41,6 +41,15 @@ const NavItems = () => {
             <span className="nav-item-text">Cart</span>
           </li>
         </Link>
+        <Link to="/grocery">
+          <li className="nav-item">
+            <img
+              src={require("../../node_modules/iconoir/icons/cracked-egg.svg")}
+              alt="grocery"
+            />
+            <span className="nav-item-text">Grocery</span>
+          </li>
+        </Link>
       </ul>
     </div>
   );

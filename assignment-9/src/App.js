@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Body from "./components/Body";
 import Header from "./components/Header";
@@ -12,10 +12,16 @@ import DefaultHomePage from "./components/DefaultHomePage";
 import SearchModal from "./components/SearchModal";
 import RestaurantMenu from "./components/RestaurantMenu";
 import useIsModalActive from "./utils/useIsModalActive";
+import useOnlineStatus from "./utils/useOnlineStatus";
+import OfflinePage from "./components/OfflinePage";
+import ShimmerUI from "./components/ShimmerUI";
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 
+const Grocery = lazy(() => import("./components/Grocery"));
+
 const AppLayout = () => {
+  const onlineStatus = useOnlineStatus();
   const lat = JSON.parse(localStorage.getItem("lat"));
   const lon = JSON.parse(localStorage.getItem("lon"));
 
@@ -66,11 +72,15 @@ const AppLayout = () => {
         updateIsModalActive={updateIsModalActive}
         updateSearchModalStatus={setIsSearchModalActive}
       />
-      <main>
-        <div className="body">
-          <Outlet context={[currentLatitude, currentLongitude]} />
-        </div>
-      </main>
+      {!onlineStatus ? (
+        <OfflinePage />
+      ) : (
+        <main>
+          <div className="body">
+            <Outlet context={[currentLatitude, currentLongitude]} />
+          </div>
+        </main>
+      )}
       <Footer />
     </div>
   );
@@ -96,6 +106,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurants/menu/:resId",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/grocery",
+        element: (
+          <Suspense fallback={<ShimmerUI />}>
+            <Grocery />
+          </Suspense>
+        ),
       },
     ],
     errorElement: <Error />,

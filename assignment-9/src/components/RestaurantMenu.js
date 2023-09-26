@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
 import ShimmerUI from "./ShimmerUI";
 import MenuCard from "./MenuCard";
