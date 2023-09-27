@@ -1,0 +1,27 @@
+{
+  "name": "assignment-11",
+  "version": "1.0.0",
+  "description": "assignment 11 of namaste react",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "author": "Rohit Kumar",
+  "license": "ISC",
+  "dependencies": {
+    "country-state-city": "^3.2.0",
+    "iconoir": "^6.11.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-responsive-carousel": "^3.2.23",
+    "react-router-dom": "^6.15.0",
+    "react-text-transition": "^3.1.0"
+  },
+  "devDependencies": {
+    "htmlnano": "2.0.3",
+    "parcel": "^2.9.3",
+    "process": "^0.11.10",
+    "serve": "^14.2.1"
+  }
+}

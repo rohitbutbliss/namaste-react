@@ -1,0 +1,212 @@
+@font-face {
+  font-family: "proxima-nova";
+  src: url("../Fonts/proximanova-regular.otf");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "proxima-nova-medium";
+  src: url("../Fonts/proxima-nova-bold.otf");
+  font-weight: bolder;
+}
+@font-face {
+  font-family: "proxima-nova-bold";
+  src: url("../Fonts/proximanova-extrabold.otf");
+  font-weight: bold;
+}
+.default-body {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  font-family: proxima-nova, sans-serif;
+}
+
+.default-main {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.default-main * {
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.default-body .default-main > * {
+  max-width: 1300px;
+  width: 100%;
+}
+
+.default-body > * {
+  margin: auto;
+}
+
+.default-main .top-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.default-logo-img {
+  width: 200px;
+}
+
+.default-logo-img > img {
+  width: 100%;
+}
+
+.default-login-btn,
+.default-signup-btn {
+  border: none;
+  height: fit-content;
+  padding: 10px 20px;
+  font-family: proxima-nova-medium, sans-serif;
+  cursor: pointer;
+}
+
+.default-top-btn {
+  display: flex;
+  gap: 10px;
+}
+
+.default-login-btn {
+  color: black;
+  background-color: white;
+}
+
+.default-signup-btn {
+  color: white;
+  background-color: black;
+}
+
+.default-container {
+  height: 100%;
+  padding: 0 20px 20px 20px;
+}
+
+.default-container-content {
+  font-size: 24px;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  gap: 10px;
+}
+
+.default-body .text-transition {
+  font-size: 30px;
+  font-family: proxima-nova-medium, sans-serif;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.default-search {
+  display: flex;
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+.default-search input {
+  width: 100%;
+  border: none;
+  padding: 15px;
+  border: 1px solid rgb(171, 171, 171);
+  border-width: 1px 0px 1px 1px;
+  color: rgb(171, 171, 171);
+}
+
+.default-search-box {
+  position: relative;
+  width: 100%;
+}
+
+.default-search input::placeholder {
+  color: rgb(206, 206, 206);
+}
+
+.default-location {
+  font-family: proxima-nova-medium, sans-serif;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background-color: #fc8019;
+  color: white;
+  cursor: pointer;
+}
+
+.default-location > img {
+  width: 20px;
+  filter: invert(100%) sepia(2%) saturate(874%) hue-rotate(247deg)
+    brightness(120%) contrast(100%);
+}
+
+.default-location > span {
+  white-space: nowrap;
+}
+
+.default-search input:focus {
+  width: 100%;
+  font-size: inherit;
+  outline: none;
+  border: 1px solid #fc8019;
+  border-width: 1px 0px 1px 1px;
+}
+
+.default-search-results {
+  position: absolute;
+  top: calc(100%);
+  max-height: 150px;
+  width: 100%;
+  overflow-y: scroll;
+  background-color: white;
+  border: 1px solid #fc8019;
+  border-width: 0px 1px 1px 1px;
+}
+
+.default-search-results.hidden {
+  display: none;
+}
+
+.default-search-result {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  color: rgb(183, 183, 183);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 450px) {
+  .default-body .text-transition {
+    font-size: 24px;
+  }
+
+  .default-container-content {
+    font-size: 18px;
+  }
+  .default-container {
+    padding: 10px;
+  }
+  .default-container .top-container {
+    padding: 10px;
+  }
+  .default-logo-img {
+    width: 150px;
+  }
+
+  .default-login-btn,
+  .default-signup-btn {
+    padding: 5px 10px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .default-logo-img {
+    width: 100px;
+  }
+}
