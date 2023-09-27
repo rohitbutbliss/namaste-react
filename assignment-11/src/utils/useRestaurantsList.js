@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const useRestaurantsList = (lat, lon) => {
   const [restaurantsList, setRestaurantsList] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false); // is loaded variable
   let currentRestaurantsList = [];
   const fetchList = async () => {
     try {
