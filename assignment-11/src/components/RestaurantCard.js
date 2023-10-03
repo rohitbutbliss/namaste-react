@@ -27,7 +27,6 @@ const RestaurantCard = (props) => {
 };
 
 const WithDiscountOffer = (props) => {
-  console.log(props);
   const { resData } = props;
   const { aggregatedDiscountInfoV3 } = resData.info;
   const { header, subHeader } = aggregatedDiscountInfoV3;

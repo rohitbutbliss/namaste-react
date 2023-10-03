@@ -5,7 +5,6 @@ const RestaurantCardContainer = (props) => {
   return (
     <div className="restaurant-container">
       {restaurantList.map((restaurant) => {
-        console.log(restaurant);
         const { info: resInfo } = restaurant;
         if (
           resInfo.aggregatedDiscountInfoV3 === undefined ||
@@ -18,16 +17,6 @@ const RestaurantCardContainer = (props) => {
           return (
             <WithDiscountOffer key={restaurant.info.id} resData={restaurant} />
           );
-
-        // const { aggregatedDiscountInfoV3: discountInfo } = restaurant.info;
-        // console.log(aggregatedDiscountInfoV3);
-        // if (discountInfo.header === undefined)
-        // else {
-        //   console.log("hey");
-        //   return (
-        //     <WithDiscountOffer key={restaurant.info.id} resData={restaurant} />
-        //   );
-        // }
       })}
     </div>
   );

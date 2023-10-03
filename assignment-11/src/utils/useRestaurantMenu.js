@@ -13,7 +13,7 @@ const useRestaurantMenu = (lat, lon, id) => {
       );
 
       res = await res.json();
-
+      console.log(res);
       const filterObj = {};
       currentResInfo.restaurantInfo = res?.data?.cards[0]?.card?.card?.info;
       currentResInfo.restaurantMenu = res?.data?.cards
@@ -24,18 +24,7 @@ const useRestaurantMenu = (lat, lon, id) => {
           (cards) =>
             cards?.card?.card["@type"] ===
             "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-        )
-        ?.reduce((initial, cards) => {
-          initial.push(...cards?.card?.card?.itemCards);
-          return initial;
-        }, [])
-        .map((items) => items.card.info)
-        .filter((item) => {
-          if (filterObj[item.id] === undefined) {
-            filterObj[item.id] = true;
-            return true;
-          }
-        });
+        );
     } catch (error) {
       currentResInfo.restaurantInfo = undefined;
       currentResInfo.restaurantMenu = undefined;

@@ -2,6 +2,7 @@ import { useOutletContext, useParams } from "react-router-dom";
 import ShimmerUI from "./ShimmerUI";
 import MenuCard from "./MenuCard";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import MenuCardContainer from "./MenuCardContainer";
 
 const RestaurantMenu = () => {
   const [currentLatitude, currentLongitude] = useOutletContext();
@@ -83,13 +84,13 @@ const RestaurantMenu = () => {
           padding: "10px",
           display: "flex",
           flexDirection: "column",
-          gap: "30px",
+          gap: "50px",
           padding: "40px 0",
           borderTop: "1px solid #d3d3d3",
         }}
       >
-        {restaurantMenu.map((menuItem) => (
-          <MenuCard menuItemObj={menuItem} key={menuItem.id} />
+        {restaurantMenu.map((menuItem, index) => (
+          <MenuCardContainer menuList={menuItem.card.card} key={index} />
         ))}
       </div>
     </div>
