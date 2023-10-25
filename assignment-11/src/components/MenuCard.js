@@ -7,6 +7,7 @@ const MenuCard = (props) => {
         display: "grid",
         gridTemplateColumns: "1fr auto",
         gap: "5px",
+        cursor: "pointer",
       }}
     >
       <div
@@ -55,20 +56,44 @@ const MenuCard = (props) => {
       </div>
       <div
         style={{
+          position: "relative",
           display: "flex",
-          alignItems: "center",
-          height: "80px",
-          width: "80px",
-          overflow: "hidden",
           justifyContent: "center",
-          borderRadius: "20px",
+          height: "100%",
         }}
       >
-        <img
-          style={{ objectFit: "contain" }}
-          src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/${imageId}`}
-          alt=""
-        />
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            height: "80px",
+            width: "80px",
+            overflow: "hidden",
+            justifyContent: "center",
+            borderRadius: "20px",
+          }}
+        >
+          <img
+            style={{ objectFit: "contain" }}
+            src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/${imageId}`}
+            alt=""
+          />
+        </div>
+        <button
+          style={{
+            backgroundColor: "green",
+            border: "none",
+            color: "white",
+            position: "absolute",
+            bottom: 0,
+            translate: "0 10%",
+            padding: "5px 8px",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+        >
+          Add +
+        </button>
       </div>
     </div>
   );

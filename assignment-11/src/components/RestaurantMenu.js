@@ -3,6 +3,7 @@ import ShimmerUI from "./ShimmerUI";
 import MenuCard from "./MenuCard";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import MenuCardContainer from "./MenuCardContainer";
+import { useEffect, useState } from "react";
 
 const RestaurantMenu = () => {
   const [currentLatitude, currentLongitude] = useOutletContext();
@@ -14,6 +15,21 @@ const RestaurantMenu = () => {
     currentLongitude,
     resId
   );
+
+  const [showStatusArray, setShowStatusArray] = useState([]);
+
+  const setInitialStatusArray = () => {
+    const tempStatusArray = [];
+    for (let i = 0; i < restaurantMenu?.length || 0; i++)
+      tempStatusArray[i] = false;
+
+    tempStatusArray[0] = true;
+    setShowStatusArray([...tempStatusArray]);
+  };
+
+  useEffect(() => {
+    setInitialStatusArray();
+  }, []);
 
   return !restaurantInfo || !restaurantMenu ? (
     <ShimmerUI />
@@ -90,7 +106,14 @@ const RestaurantMenu = () => {
         }}
       >
         {restaurantMenu.map((menuItem, index) => (
-          <MenuCardContainer menuList={menuItem.card.card} key={index} />
+          <MenuCardContainer
+            menuList={menuItem.card.card}
+            key={index}
+            setShowStatusArray={setShowStatusArray}
+            statusArrayLength={restaurantMenu.length}
+            index={index}
+            showStatusArray={showStatusArray}
+          />
         ))}
       </div>
     </div>

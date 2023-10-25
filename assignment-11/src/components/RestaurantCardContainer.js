@@ -6,17 +6,12 @@ const RestaurantCardContainer = (props) => {
     <div className="restaurant-container">
       {restaurantList.map((restaurant) => {
         const { info: resInfo } = restaurant;
-        if (
-          resInfo.aggregatedDiscountInfoV3 === undefined ||
-          resInfo.aggregatedDiscountInfoV3.header === undefined
-        ) {
-          return (
-            <RestaurantCard key={restaurant.info.id} resData={restaurant} />
-          );
-        } else
-          return (
-            <WithDiscountOffer key={restaurant.info.id} resData={restaurant} />
-          );
+        return resInfo.aggregatedDiscountInfoV3 === undefined ||
+          resInfo.aggregatedDiscountInfoV3.header === undefined ? (
+          <RestaurantCard key={restaurant.info.id} resData={restaurant} />
+        ) : (
+          <WithDiscountOffer key={restaurant.info.id} resData={restaurant} />
+        );
       })}
     </div>
   );

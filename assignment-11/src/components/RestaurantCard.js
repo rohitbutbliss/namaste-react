@@ -7,8 +7,6 @@ const RestaurantCard = (props) => {
   const { name, locality, cuisines, avgRating, cloudinaryImageId, id } =
     resData.info;
 
-  const { resId } = useParams();
-
   return (
     <Link to={`/restaurants/menu/${id}`}>
       <div className="restaurant-card">
@@ -33,8 +31,6 @@ const WithDiscountOffer = (props) => {
 
   const { name, locality, cuisines, avgRating, cloudinaryImageId, id } =
     resData.info;
-
-  const { resId } = useParams();
 
   return (
     <Link to={`/restaurants/menu/${id}`}>
